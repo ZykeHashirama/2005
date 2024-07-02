@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="quotegen.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quotegen.css"> 
+<link rel="stylesheet" href="quotegen.js">  
+
+
+<title> Quote Generator</title>
+</head>
+<body>
+
+    
+      <div class="quote-generator">
+        <!-- Your quote generator code here -->
+      
+
+
+    <div class="quote-box">
+
+       
+        <h1 >daily quote</h1>
+        <blockquote id="quote">loading...</blockquote>
+        <span id="author">loading...</span> 
+      
+        <div>
+            <button id="new-quote">New Quote</button>
+            
+            
+        </div>
+   
+   
+    </div>
+   
+
+    <script>
+
+const api_url = 'https://type.fit/api/quotes';
+fetch(api_url)
+    .then(response => response.json())
+    .then(data => {
+        const quote = document.getElementById('quote');
+        const author = document.getElementById('author');
+        const newQuoteBtn = document.getElementById('new-quote');
+        const tweetBtn = document.getElementById('tweet-quote');
+        newQuoteBtn.addEventListener('click', () => {
+            const quoteIndex = Math.floor(Math.random() * data.length);
+            quote.innerText = data[quoteIndex].text;
+            author.innerText = data[quoteIndex].author;
+        });
+
+
+        const darkModeSwitch = document.getElementById('dark-mode-switch');
+        darkModeSwitch.onclick('change', toggleDarkMode);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    })
+
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>
